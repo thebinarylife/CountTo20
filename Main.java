@@ -82,7 +82,7 @@ class Traverser {
 	 */
 	public void traverse(Node node, Node prev, int sum, ArrayList<Integer> path) {
 		
-		// For every direction at node check all nodes
+		// For every direction at node check all neighboring nodes
 		for(int i = 0; i < 4; i++) {
 			/* Convert integer to direction
 			* Get the node at the desired direction
