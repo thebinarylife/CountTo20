@@ -54,79 +54,6 @@ enum Direction {
 	}
 }
 
-/**
- * Board functionality
- */
-class Board {
-	Node[][] board;
-	
-	Board() {
-		board = new Node[3][3];
-	}
-
-	// Returns requested nodes, not used except in main method
-	Node getNode(int i) {
-		for(Node[] r : board)
-			for(Node n : r)
-				if(n.getValue() == i)
-					return n;
-		
-		return null;
-	}
-	
-	void setupBoard() {
-		// For each node add incremented number
-		for(int i = 0; i< 3; i++)
-		{
-			for(int j = 0; j < 3; j++)
-			{
-				// Multiply i (row) by three to get the proper number for the row
-				// Add 1 to make sure you account for index offset
-				Node n = new Node(i*3 + j + 1, i, j);
-				board[i][j] = n;
-			}
-		}
-		
-		// For each node check to see if there is a boundary if there is a boundary make sure to set its node to null
-		for(int i = 0; i< 3; i++)
-		{
-			for(int j = 0; j < 3; j++)
-			{
-				Node n = board[i][j];
-				// x
-				switch(j) {
-				case 0:
-					n.setRight(board[i][j+1]);
-					break;
-				case 2:
-					n.setLeft(board[i][j-1]);
-					break;
-				default:
-					n.setLeft(board[i][j-1]);
-					n.setRight(board[i][j+1]);
-					break;
-				}
-				// y
-				switch(i) {
-				case 0:
-					n.setUp(board[i+1][j]);
-					break;
-				case 2:
-					n.setDown(board[i-1][j]);
-					break;
-				default:
-					n.setUp(board[i+1][j]);
-					n.setDown(board[i-1][j]);
-					break;
-				}
-			}
-		}
-		
-	}
-	
-	
-}
-
 /* THIS was not my original idea for the code had 2 other attempts at trying to do this 
 *  Original Idea is down below at the bottom of the file (it just wasnt recursive ready)
 */
@@ -212,6 +139,79 @@ class Traverser {
 	}
 	
 
+	
+}
+
+/**
+ * Board functionality
+ */
+class Board {
+	Node[][] board;
+	
+	Board() {
+		board = new Node[3][3];
+	}
+
+	// Returns requested nodes, not used except in main method
+	Node getNode(int i) {
+		for(Node[] r : board)
+			for(Node n : r)
+				if(n.getValue() == i)
+					return n;
+		
+		return null;
+	}
+	
+	void setupBoard() {
+		// For each node add incremented number
+		for(int i = 0; i< 3; i++)
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				// Multiply i (row) by three to get the proper number for the row
+				// Add 1 to make sure you account for index offset
+				Node n = new Node(i*3 + j + 1, i, j);
+				board[i][j] = n;
+			}
+		}
+		
+		// For each node check to see if there is a boundary if there is a boundary make sure to set its node to null
+		for(int i = 0; i< 3; i++)
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				Node n = board[i][j];
+				// x
+				switch(j) {
+				case 0:
+					n.setRight(board[i][j+1]);
+					break;
+				case 2:
+					n.setLeft(board[i][j-1]);
+					break;
+				default:
+					n.setLeft(board[i][j-1]);
+					n.setRight(board[i][j+1]);
+					break;
+				}
+				// y
+				switch(i) {
+				case 0:
+					n.setUp(board[i+1][j]);
+					break;
+				case 2:
+					n.setDown(board[i-1][j]);
+					break;
+				default:
+					n.setUp(board[i+1][j]);
+					n.setDown(board[i-1][j]);
+					break;
+				}
+			}
+		}
+		
+	}
+	
 	
 }
 
