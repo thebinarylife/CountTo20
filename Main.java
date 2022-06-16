@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/* **  EDIT: I meant to say file in the email, not class. My apologies, it was a long day */
+/* **  EDIT: I meant to say file in the email, not class. My apologies. It was a long day */
 
 /* Classes: Main, Traverser, Board, Node & ENUM: Direction */
 public class Main {
