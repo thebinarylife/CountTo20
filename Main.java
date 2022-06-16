@@ -57,7 +57,7 @@ enum Direction {
 	}
 }
 
-/* THIS was not my original idea for the code had 2 other attempts at trying to do this 
+/* THIS was not my original idea for the code had 2 other attempts at trying doing this 
 *  Original Idea is down below at the bottom of the file [Couldn't be used recursively]
 */
 class Traverser {
@@ -72,7 +72,7 @@ class Traverser {
 	
 	/**
 	 * Ended up using this as the method.
-	 * 		Once the function/class was recursive-able, it was finished rather quickly
+	 * 		Once the function/class was structured for recursion, it was finished rather quickly
 	 * 
 	 * @param node - node to be analyzed
 	 * @param prev - previous node not actually needed since we just cross checked the path, but originally I did prev 
