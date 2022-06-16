@@ -55,7 +55,7 @@ enum Direction {
 }
 
 /* THIS was not my original idea for the code had 2 other attempts at trying to do this 
-*  Original Idea is down below at the bottom of the file (it just wasnt recursive ready)
+*  Original Idea is down below at the bottom of the file [Couldn't be used recursively]
 */
 class Traverser {
 	private ArrayList<ArrayList<Integer>> paths;
