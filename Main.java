@@ -144,9 +144,9 @@ class Traverser {
 	 * 		Once the function was recursive, it was finished rather quickly
 	 * 
 	 * @param node - node to be analyzed
-	 * @param prev - previous node not actually needed since we just cross checked the path, but originally I did prev first
+	 * @param prev - previous node not actually needed since we just cross checked the path, but originally I did prev 
 	 * @param sum - sum of all elements
-	 * @param path - path taken to reach 20
+	 * @param path - path taken to reach current position
 	 * @return
 	 */
 	public void traverse(Node node, Node prev, int sum, ArrayList<Integer> path) {
