@@ -22,90 +22,6 @@ public class Main {
 	}
 
 }
-// THIS was not my original idea for the code had 2 other attempts at trying to do this 
-// Original Idea is down below at the bottom of the file (you'll see why it didn't work)
-class Traverser {
-	private ArrayList<ArrayList<Integer>> paths;
-	private Node orig;
-	
-	// Initialize The Traverser class
-	public Traverser(Node n) {
-		this.orig = n;
-		paths = new ArrayList<ArrayList<Integer>>();
-	}
-	
-	/**
-	 * Ended up using this as the method.
-	 * 		Once the function was recursive, it was finished rather quickly
-	 * 
-	 * @param node - node to be analyzed
-	 * @param prev - previous node not actually needed since we just cross checked the path, but originally I did prev first
-	 * @param sum - sum of all elements
-	 * @param path - path taken to reach 20
-	 * @return
-	 */
-	public void traverse(Node node, Node prev, int sum, ArrayList<Integer> path) {
-		
-		// For every direction at node check all nodes
-		for(int i = 0; i < 4; i++) {
-			// Convert integer to direction
-			// Get the node at the desired direction
-			// If Node is null its a boundary -> go next
-			Direction d = Direction.toDirection(i);
-			Node n = node.getNode(d);
-			if(n == null)
-				continue;
-			
-			// If the node is equal to previous (DEPRECATED) or if the path contains any of the previous nodes ( need to check past nodes too )
-			// 			THEN we move on
-			if(n.equals(prev) || path.contains(n.getValue()))
-				continue;
-			
-			// if the value is MORe than 20, we end that process and back up to see if there's anything else we can work with
-			if(sum + n.getValue() > 20)
-				continue;
-			
-			// If its equal to 20 we add current path to successful paths and move on 
-			ArrayList<Integer> p = new ArrayList<Integer>(path);
-			if(sum + n.getValue() == 20) {
-				path.add(n.getValue());
-				paths.add(path);
-				continue;
-			}
-			
-			// Now this actually gave me a problem, I was adding the sum before the traverse recursion occurred so when the program came back to do the next iteration, the sum had already been incremented  
-			// 			(UP directionality was the last check)
-			// I ended up subtracting the sum after the recursion occurred
-			// wasn't my best or preferred solution but it worked for this.
-			if(sum + n.getValue() < 20) {
-				sum += n.getValue();
-				p.add(n.getValue());
-				traverse(n, node, sum, p);
-				sum -= n.getValue();
-			}
-		}
-		
-	}
-	
-	/**
-	 * Prints all paths
-	 */
-	void print() {
-		int count = 0;
-		for(ArrayList<Integer> path : paths)
-		{
-			System.out.println("Path " + count);
-			for(int i : path)
-				System.out.print(i + ", ");
-			
-			count++;
-			System.out.println();
-		}
-	}
-	
-
-	
-}
 
 /**
  * Enum for directionality,
@@ -208,6 +124,91 @@ class Board {
 		
 	}
 	
+	
+}
+
+// THIS was not my original idea for the code had 2 other attempts at trying to do this 
+// Original Idea is down below at the bottom of the file (you'll see why it didn't work)
+class Traverser {
+	private ArrayList<ArrayList<Integer>> paths;
+	private Node orig;
+	
+	// Initialize The Traverser class
+	public Traverser(Node n) {
+		this.orig = n;
+		paths = new ArrayList<ArrayList<Integer>>();
+	}
+	
+	/**
+	 * Ended up using this as the method.
+	 * 		Once the function was recursive, it was finished rather quickly
+	 * 
+	 * @param node - node to be analyzed
+	 * @param prev - previous node not actually needed since we just cross checked the path, but originally I did prev first
+	 * @param sum - sum of all elements
+	 * @param path - path taken to reach 20
+	 * @return
+	 */
+	public void traverse(Node node, Node prev, int sum, ArrayList<Integer> path) {
+		
+		// For every direction at node check all nodes
+		for(int i = 0; i < 4; i++) {
+			// Convert integer to direction
+			// Get the node at the desired direction
+			// If Node is null its a boundary -> go next
+			Direction d = Direction.toDirection(i);
+			Node n = node.getNode(d);
+			if(n == null)
+				continue;
+			
+			// If the node is equal to previous (DEPRECATED) or if the path contains any of the previous nodes ( need to check past nodes too )
+			// 			THEN we move on
+			if(n.equals(prev) || path.contains(n.getValue()))
+				continue;
+			
+			// if the value is MORe than 20, we end that process and back up to see if there's anything else we can work with
+			if(sum + n.getValue() > 20)
+				continue;
+			
+			// If its equal to 20 we add current path to successful paths and move on 
+			ArrayList<Integer> p = new ArrayList<Integer>(path);
+			if(sum + n.getValue() == 20) {
+				path.add(n.getValue());
+				paths.add(path);
+				continue;
+			}
+			
+			// Now this actually gave me a problem, I was adding the sum before the traverse recursion occurred so when the program came back to do the next iteration, the sum had already been incremented  
+			// 			(UP directionality was the last check)
+			// I ended up subtracting the sum after the recursion occurred
+			// wasn't my best or preferred solution but it worked for this.
+			if(sum + n.getValue() < 20) {
+				sum += n.getValue();
+				p.add(n.getValue());
+				traverse(n, node, sum, p);
+				sum -= n.getValue();
+			}
+		}
+		
+	}
+	
+	/**
+	 * Prints all paths
+	 */
+	void print() {
+		int count = 0;
+		for(ArrayList<Integer> path : paths)
+		{
+			System.out.println("Path " + count);
+			for(int i : path)
+				System.out.print(i + ", ");
+			
+			count++;
+			System.out.println();
+		}
+	}
+	
+
 	
 }
 
