@@ -127,8 +127,9 @@ class Board {
 	
 }
 
-// THIS was not my original idea for the code had 2 other attempts at trying to do this 
-// Original Idea is down below at the bottom of the file (you'll see why it didn't work)
+/* THIS was not my original idea for the code had 2 other attempts at trying to do this 
+*  Original Idea is down below at the bottom of the file (it just wasnt recursive ready)
+*/
 class Traverser {
 	private ArrayList<ArrayList<Integer>> paths;
 	private Node orig;
@@ -141,7 +142,7 @@ class Traverser {
 	
 	/**
 	 * Ended up using this as the method.
-	 * 		Once the function was recursive, it was finished rather quickly
+	 * 		Once the function/class was recursive-able, it was finished rather quickly
 	 * 
 	 * @param node - node to be analyzed
 	 * @param prev - previous node not actually needed since we just cross checked the path, but originally I did prev 
@@ -153,20 +154,22 @@ class Traverser {
 		
 		// For every direction at node check all nodes
 		for(int i = 0; i < 4; i++) {
-			// Convert integer to direction
-			// Get the node at the desired direction
-			// If Node is null its a boundary -> go next
+			/* Convert integer to direction
+			* Get the node at the desired direction
+			* If Node is null its a boundary -> go next
+			*/
 			Direction d = Direction.toDirection(i);
 			Node n = node.getNode(d);
 			if(n == null)
 				continue;
 			
-			// If the node is equal to previous (DEPRECATED) or if the path contains any of the previous nodes ( need to check past nodes too )
-			// 			THEN we move on
+			/* If the node is equal to previous (DEPRECATED) or if the path contains any of the previous nodes ( need to check past nodes too )
+			* 		THEN we move on
+			*/
 			if(n.equals(prev) || path.contains(n.getValue()))
 				continue;
 			
-			// if the value is MORe than 20, we end that process and back up to see if there's anything else we can work with
+			// if the value is MORE than 20, we end that process and back up to see if there's anything else we can work with
 			if(sum + n.getValue() > 20)
 				continue;
 			
@@ -178,10 +181,10 @@ class Traverser {
 				continue;
 			}
 			
-			// Now this actually gave me a problem, I was adding the sum before the traverse recursion occurred so when the program came back to do the next iteration, the sum had already been incremented  
-			// 			(UP directionality was the last check)
-			// I ended up subtracting the sum after the recursion occurred
-			// wasn't my best or preferred solution but it worked for this.
+			/* Now this actually gave me a problem, I was adding the sum before the traverse recursion occurred so when the program came back to do the next iteration, the sum had already been incremented  
+			* I ended up subtracting the sum after the recursion occurred
+			* wasn't my best or preferred solution but it worked for this.
+			*/
 			if(sum + n.getValue() < 20) {
 				sum += n.getValue();
 				p.add(n.getValue());
@@ -193,7 +196,7 @@ class Traverser {
 	}
 	
 	/**
-	 * Prints all paths
+	 * Prints all paths to 20
 	 */
 	void print() {
 		int count = 0;
@@ -224,9 +227,10 @@ class Node {
 	
 	int value;
 	
-	// Boundary nullifying was unnecessary because of above, but this was my original idea
-	// Wanted to create using a default constructor to identify which were not initialized
-	// threw errors first try, so the idea was scrapped
+	/* Boundary nullifying was unnecessary because of above, but this was my original idea
+	* Wanted to create using a default constructor to identify which were not initialized
+	* threw errors first try, so the idea was scrapped
+	*/
 	Node(int val, int y, int x) {
 		this.value = val;
 		
