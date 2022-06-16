@@ -28,7 +28,7 @@ public class Main {
 
 /**
  * Enum for directionality,
- * Use to convert to direction
+ * Use to convert int to direction
  */
 enum Direction {
 	RIGHT(0),
