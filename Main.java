@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/* **  Edit: I meant to say file in the email, not class. My apologies, it was a long day */
+
+/* Classes: Main, Traverser, Board, Node & ENUM: Direction */
 public class Main {
 	
 	public static void main(String[] args) {
